@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Crash Course | Selectors </title>
+    <script src = https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script>
+    <style>
+        body{
+            font-size: 17px;
+            font-family:arial;
+            line-height: 1.5em;
+        }
+        header {
+            background:#333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px #000 solid;
+            margin-bottom: 10px;
+        }
+        #container{
+            width:90%;
+            margin:auto;
+            padding:10px;
+        }
+        .myClass {
+            color:blue;
+            background:black;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>jQuery Crash Course</h1>
+    </header>
+    <div id="container">
+        <button id="btn1">Button 1</button>
+        <p class="para1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur illo quo ut. Odio omnis asperiores consequuntur autem id voluptates sint voluptate assumenda accusantium quasi aperiam minima, nostrum sequi voluptatum. Assumenda.</p>
+        <p class="para2">Dorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur illo quo ut. Odio omnis asperiores consequuntur autem id voluptates sint voluptate assumenda accusantium quasi aperiam minima, nostrum sequi voluptatum. Assumenda.</p>
+        <div id="myDiv">
+            
+        </div>
+        <input type="text" id="newItem">
+        <ul id="users">
+            <li>List Item</li>
+            <li>List Item</li>
+            <li>List Item</li>
+            <li>List Item</li>
+        </ul>
+        <a href="http://www.google.com">Visit google in a new window</a>
+        
+    </div>
+    <script>
+        $(document).ready(function() {
+            //we can set multiple css properties at once by passing an object
+            $('p.para1').css({'color':'red', 'background':'#ccc'})
+            $('p.para2').addClass('myClass');
+            $('#btn1').click(function (e){
+                $('p.para2').toggleClass('myClass');
+            });
+            $('ul').append('<li>New Item</li>')
+            $('ul').prepend('<li>First Item</li>')
+            //$('#myDiv').text("Hello World");
+            $('#myDiv').html("<h3>Hello World</h3>");
+            //alert($("#myDiv").text())
+
+            //insert items before and after a given element (at the same level) without referencing parent
+            $('ul').before('<h4>Before</h4>')
+            $('ul').after('<h4>After</h4>')
+
+            //remove all the inner elements but leave the element itself
+            //basically clobbers it and leaves the shell
+            // $('ul').empty()
+
+            //detach removes the element from the DOM entirely
+            // $('ul').detach()
+
+            //
+            $('p').wrap("<h3>")
+
+
+            //shortcut for setting the attribute
+            //passing one arg (attrname) will get the attribute
+            //passing two args (attrname, value) will set the attribute to value
+            // $('a').attr('target', '_blank')
+            // alert($('a').attr('target'))
+            $('#newItem').keyup(function(e){
+                var code = e.which;
+                if(code == 13){
+                    e.preventDefault()
+                    $('ul').append(`<li>${e.target.value}</li>`)
+                    console.log($('newItem'))
+                }
+            })
+
+            /* use the .each method to iterate over an array
+            let myArr = ["Brad", "Kelly", "Nate", "Jose"]
+            $.each(myArr, function(idx, val){
+                $('#users').append(`<li>${val}</li>`)
+            })
+            */
+
+            //get an array from multiple elements
+            let newArr = $('ul li').toArray();
+            console.log(newArr)
+        })
+    </script>    
+</body>
+
+</html>

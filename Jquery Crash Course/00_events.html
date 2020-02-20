@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Crash Course | Selectors </title>
+    <script src = https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script>
+    <style>
+        body{
+            font-size: 17px;
+            font-family:arial;
+            line-height: 1.5em;
+        }
+        header {
+            background:#333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px #000 solid;
+            margin-bottom: 10px;
+        }
+        #container{
+            width:90%;
+            margin:auto;
+            padding:10px;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>jQuery Crash Course</h1>
+    </header>
+    <div id="container">
+        <h3> Mouse Events</h3>
+        <button id="btn1">Button 1</button>
+        <button id="btn2">Button 2</button>
+        <p class="para1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur illo quo ut. Odio omnis asperiores consequuntur autem id voluptates sint voluptate assumenda accusantium quasi aperiam minima, nostrum sequi voluptatum. Assumenda.</p>
+        <h1 id="coords"></h1>
+        <hr>
+        <form id="myform">
+            <label>Name</label><br>
+            <input type="text" id="name" name="name">
+            <br>
+            <label>Email</label><br>
+            <input type="email" id="email" name="email">
+            <br>
+            <label>Gender</label><br>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script>
+        $(document).ready(function() {
+            //these two do the same thing, the first is just a shorter version
+            // $('#btn1').click(function(){
+            //     alert("BUtton clicked");
+            // })
+            // $('#btn2').on('click', function(){
+            //     //toggle alternates between hide and show>>
+            //     $('.para1').toggle()
+            // })
+
+            $('#btn1').dblclick(function(){
+                $('.para1').toggle()
+            })
+            // $('#btn1').hover(function(){
+            //     $('.para1').toggle()
+            // })
+            // $('#btn1').mousemove(function(){
+            //     $('.para1').toggle()
+            // })
+            // $('#btn1').mousedown(function(){
+            //     $('.para1').toggle()
+            // })
+            // $('#btn1').mouseup(function(e){
+            //     console.log(e.currentTarget.innerHTML)
+            //     console.log(e.currentTarget.outerHTML)
+            //     $('.para1').toggle()
+            // })
+            //show x and y coordinates of the mouse
+            // $(document).mousemove(function(e){
+            //     $('#coords').html(`coords: X: ${e.clientX} Y: ${e.clientY})`)
+
+            // })
+        
+            //Changing style of form inputs on focus and blur and keypress
+            // $('input').focus(function(e){
+            //     $(this).css('background', 'pink')
+            // });
+            // $('input').blur(function(e){
+            //     $(this).css('background', 'white')
+            // });
+            // $('input').keyup(function(e){
+            //     console.log(e.target.value)
+            // });
+
+            $('select#gender').change(function(e){
+                let sex = e.target.value === "female" ? 'girl':'boy'
+                alert(`It's a ${sex}!!!!`)
+            });
+
+            $('#myform').submit(function(e){
+                e.preventDefault();
+                var name = $('input#name').val();
+                console.log("hi ", name)
+            })
+        })
+    </script>    
+</body>
+
+</html>
